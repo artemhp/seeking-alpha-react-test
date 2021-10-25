@@ -1,5 +1,18 @@
+/* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
 
-export default function Cell({ config }: any) {
-  return <div className={config.isActive ? 'alive' : 'dead'}></div>;
+interface ICellConfig {
+  isActive: boolean;
+  index: number;
+}
+
+export default function Cell({ isActive, index }: ICellConfig) {
+  const state = isActive ? 'alive' : 'dead';
+  return (
+    <div
+      tabIndex={index + 1}
+      aria-label={`${state} cell`}
+      className={state}
+    ></div>
+  );
 }

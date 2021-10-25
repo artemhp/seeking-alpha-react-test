@@ -27,4 +27,4 @@ const generatePopulatedGrid = (rows: number, cols: number): TGrid => {
 };
 
 export { generatePopulatedGrid, generateArea };
-export type { IGridConfig };
+export type { TGrid, IGridConfig };

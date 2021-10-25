@@ -4,7 +4,7 @@ import './styles.css';
 
 import Cell from './components/Cell';
 
-import { generatePopulatedGrid } from './functions/grid';
+import { generatePopulatedGrid, TGrid } from './functions/grid';
 import nextGrid from './functions/nextGrid';
 
 export default function App({
@@ -16,7 +16,9 @@ export default function App({
   rows: number;
   tick: number;
 }) {
-  const [grid, setGrid] = useState(() => generatePopulatedGrid(cols, rows));
+  const [grid, setGrid] = useState<TGrid>(() =>
+    generatePopulatedGrid(cols, rows)
+  );
 
   useEffect(() => {
     document.documentElement.style.setProperty('--gridColumn', `${cols}`);
@@ -34,7 +36,9 @@ export default function App({
   return (
     <div className='grid'>
       {grid.map((row, index) =>
-        row.map((column, index) => <Cell key={index} config={column} />)
+        row.map((column, index) => (
+          <Cell key={index} index={index} isActive={column.isActive} />
+        ))
       )}
     </div>
   );
