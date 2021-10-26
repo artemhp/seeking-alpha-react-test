@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/aria-role */
-import React from 'react';
+import React, { memo } from 'react';
 
 interface ICellConfig {
   isActive: boolean;
   index: number;
 }
 
-export default function Cell({ isActive, index }: ICellConfig) {
+export default memo(function Cell({ isActive, index }: ICellConfig) {
   const state = isActive ? 'alive' : 'dead';
   return (
     <div
@@ -15,4 +15,4 @@ export default function Cell({ isActive, index }: ICellConfig) {
       className={state}
     ></div>
   );
-}
+});

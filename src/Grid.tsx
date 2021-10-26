@@ -7,15 +7,13 @@ import Cell from './components/Cell';
 import { generatePopulatedGrid, TGrid } from './functions/grid';
 import nextGrid from './functions/nextGrid';
 
-export default function App({
-  cols,
-  rows,
-  tick,
-}: {
+interface IGrid {
   cols: number;
   rows: number;
   tick: number;
-}) {
+}
+
+export default function Grid({ cols, rows, tick }: IGrid) {
   const [grid, setGrid] = useState<TGrid>(() =>
     generatePopulatedGrid(cols, rows)
   );
@@ -35,9 +33,13 @@ export default function App({
 
   return (
     <div className='grid'>
-      {grid.map((row, index) =>
-        row.map((column, index) => (
-          <Cell key={index} index={index} isActive={column.isActive} />
+      {grid.map((row, rowIndex) =>
+        row.map((column, colIndex) => (
+          <Cell
+            key={`${rowIndex}_${colIndex}`}
+            index={1}
+            isActive={column.isActive}
+          />
         ))
       )}
     </div>
