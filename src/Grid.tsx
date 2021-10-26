@@ -26,8 +26,8 @@ export default function Grid({ cols, rows, tick }: IGrid) {
   useEffect(() => {
     const next = nextGrid({ grid, cols, rows });
     if (JSON.stringify(next) !== JSON.stringify(grid)) {
-      const interval = setInterval(() => setGrid(next), tick);
-      return () => clearInterval(interval);
+      const timer = setTimeout(() => setGrid(next), tick);
+      return () => clearTimeout(timer);
     }
   }, [grid, cols, rows, tick]);
 
